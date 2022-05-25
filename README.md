@@ -1,3 +1,8 @@
+NOTICE
+=========
+
+I am not the original creator - I created a fork of the project.  You can find the original project at the link above (or here: [crobi/rpg-cards](https://github.com/crobi/rpg-cards))
+
 rpg-cards
 =========
 
