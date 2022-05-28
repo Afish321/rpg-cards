@@ -13,6 +13,7 @@ function card_default_options() {
         page_columns: 3,
         card_arrangement: "doublesided",
         card_size: "25x35",
+        default_style: "0",
         card_count: null,
         icon_inline: true,
         rounded_corners: true
@@ -59,6 +60,10 @@ function card_remove_tag(card, tag) {
 // Card definition related functions
 // ============================================================================
 
+function card_data_card_style(card_data, options) {
+    return card_data.card_style || options.default_style || "0";
+}
+
 function card_data_color_front(card_data, options) {
     return card_data.color_front || card_data.color || options.default_color || "black";
 }
@@ -69,6 +74,18 @@ function card_data_color_back(card_data, options) {
 
 function card_data_icon_front(card_data, options) {
     return card_data.icon_front || card_data.icon || options.default_icon || "ace";
+}
+
+function card_data_icon_spell_level(card_data, options) {
+    var level = card_data.spell_level;
+    var result = "";
+        if (level) {
+            result = "white-book-" + level;
+        }
+        else {
+            result = "white-book";
+        }
+    return result;
 }
 
 function card_data_icon_back(card_data, options) {
@@ -99,6 +116,21 @@ function card_element_icon(card_data, options) {
     var result = "";
     result += '<div class="card-title-' + classname + '-container">';
     result += '    <div class="card-title-' + classname + ' icon-' + icon + '">';
+    result += '    </div>';
+    result += '</div>';
+    return result;
+}
+
+function card_element_spell_level(card_data, options) {
+    var icon = card_data_icon_spell_level(card_data, options);
+    var classname = "icon";
+    if (options.icon_inline) {
+        classname = "inlineicon";
+    }
+    
+    var result = "";
+    result += '<div class="card-spell-level-' + classname + '-container">';
+    result += '    <div class="card-spell-level-' + classname + ' icon-' + icon + '">';
     result += '    </div>';
     result += '</div>';
     return result;
@@ -361,13 +393,24 @@ function card_generate_color_gradient_style(color, options) {
 function card_generate_front(data, options) {
     var color = card_data_color_front(data, options);
     var style_color = card_generate_color_style(color, options);
-
+    var card_style = card_data_card_style(data, options);
+    console.log(card_style, typeof card_style);
     var result = "";
-    result += '<div class="card card-size-' + options.card_size + ' ' + (options.rounded_corners ? 'rounded-corners' : '') + '" ' + style_color + '>';
-    result += card_element_icon(data, options);
-    result += card_element_title(data, options);
-    result += card_generate_contents(data.contents, data, options);
-    result += '</div>';
+    
+    if(card_style = "0"){
+        result += '<div class="card card-size-' + options.card_size + ' ' + (options.rounded_corners ? 'rounded-corners' : '') + '" ' + style_color + '>';
+        result += card_element_icon(data, options);
+        result += card_element_title(data, options);
+        result += card_generate_contents(data.contents, data, options);
+        result += '</div>';
+    }
+    else if(card_style = "1"){
+        result += '<div class="card card-size-' + options.card_size + ' ' + (options.rounded_corners ? 'rounded-corners' : '') + '" ' + style_color + '>';
+        //result += card_element_spell_level(data, options);
+        //result += card_element_title(data, options);
+        //result += card_generate_contents(data.contents, data, options);
+        result += '</div>';
+    }
 
     return result;
 }

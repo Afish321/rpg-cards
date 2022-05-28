@@ -1,10 +1,21 @@
 var card_data_example_spell = [
     {
+        "card_style": 0,
         "count": 1,
         "color": "maroon",
         "title": "Burning Hands",
         "icon": "white-book-1",
         "icon_back": "robe",
+        "spell_level": 0,
+        "casting_time": 0,
+        "concentration": 0,
+        "ritual": 0,
+        "range": "Self (15ft cone)",
+        "duration":"<10 MIN",
+        "verbal": 0,
+        "somatic": 0,
+        "material_description": "A daggerbone dagger.",
+        "math":"d8 + WIS",
         "contents": [
             "subtitle | 1st level evocation",
             "rule",

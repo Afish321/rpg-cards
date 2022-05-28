@@ -1,10 +1,12 @@
 var card_data_example = [
     {
+        "card_style": "1",
         "count": 1,
         "color": "maroon",
         "title": "Burning Hands",
         "icon": "white-book-1",
         "icon_back": "robe",
+        "spell_level": 3,
         "contents": [
             "subtitle | 1st level evocation",
             "rule",

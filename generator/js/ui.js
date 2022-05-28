@@ -176,6 +176,7 @@ ui_save_file.filename = 'rpg_cards.json';
 function ui_update_selected_card() {
     var card = ui_selected_card();
     if (card) {
+        $("#card-style").val(card.card_style);
         $("#card-title").val(card.title);
         $("#card-title-size").val(card.title_size);
         $("#card-count").val(card.count);
@@ -186,6 +187,7 @@ function ui_update_selected_card() {
         $("#card-tags").val(card.tags.join(", "));
         $("#card-color").val(card.color).change();
     } else {
+        $("#card-style").val("0");
         $("#card-title").val("");
         $("#card-title-size").val("");
         $("#card-count").val(1);
@@ -346,6 +348,12 @@ function ui_change_default_icon() {
     ui_render_selected_card();
 }
 
+function ui_change_card_casting_time() {
+}
+
+function ui_change_card_concentration() {
+}
+
 function ui_change_card_contents() {
     var value = $(this).val();
 
@@ -356,6 +364,9 @@ function ui_change_card_contents() {
     }
 }
 
+function ui_change_card_duration() {
+}
+
 function ui_change_card_contents_keyup () {
     clearTimeout(ui_change_card_contents_keyup.timeout);
     ui_change_card_contents_keyup.timeout = setTimeout(function () {
@@ -364,7 +375,41 @@ function ui_change_card_contents_keyup () {
 }
 ui_change_card_contents_keyup.timeout = null;
 
+function ui_change_card_material() {
+}
+
+function ui_change_card_material_description() {
+}
+
+function ui_change_card_math() {
+}
+
+function ui_change_card_somatic() {
+}
+
 function ui_change_card_style() {
+    //var value = $(this).val();
+    //var card = ui_selected_card();
+
+    //card.card_style = value;
+    
+    //ui_render_selected_card();
+    var style_value = $("#card-style").val();
+    var card = ui_selected_card();
+    if (card) {
+        card.card_style = style_value;
+        //$("#selected-card option:selected").text(style_value);
+        ui_render_selected_card();
+    }
+}
+
+function ui_change_card_spell_level() {
+}
+
+function ui_change_card_range() {
+}
+
+function ui_change_card_ritual() {
 }
 
 function ui_change_card_tags() {
@@ -386,6 +431,9 @@ function ui_change_card_tags() {
 function ui_change_default_title_size() {
     card_options.default_title_size = $(this).val();
     ui_render_selected_card();
+}
+
+function ui_change_card_verbal() {
 }
 
 function ui_change_default_icon_size() {
@@ -523,11 +571,21 @@ $(document).ready(function () {
     $("#card-count").change(ui_change_card_property);
     $("#card-icon-back").change(ui_change_card_property);
 	$("#card-background").change(ui_change_card_property);
+    $("#card-casting-time").change(ui_change_card_casting_time);
 	$("#card-color").change(ui_change_card_color);
+    $("#card-concentration").change(ui_change_card_concentration);
     $("#card-contents").change(ui_change_card_contents);
+    $("#card-duration").change(ui_change_card_duration);
+    $("#card-spell-level").change(ui_change_card_property);
     $("#card-style").change(ui_change_card_style);
+    $("#card-range").change(ui_change_card_range);
+    $("#card-ritual").change(ui_change_card_ritual);
     $("#card-tags").change(ui_change_card_tags);
-
+    $("#card-verbal").change(ui_change_card_verbal);
+    $("#card-somatic").change(ui_change_card_somatic);
+    $("#card-material").change(ui_change_card_material);
+    $("#card-material-description").change(ui_change_card_material_description);
+    $("#card-math").change(ui_change_card_math);
     $("#card-contents").keyup(ui_change_card_contents_keyup);
 
 
