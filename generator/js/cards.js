@@ -394,21 +394,20 @@ function card_generate_front(data, options) {
     var color = card_data_color_front(data, options);
     var style_color = card_generate_color_style(color, options);
     var card_style = card_data_card_style(data, options);
-    console.log(card_style, typeof card_style);
     var result = "";
     
-    if(card_style = "0"){
+    if(card_style == "0"){
         result += '<div class="card card-size-' + options.card_size + ' ' + (options.rounded_corners ? 'rounded-corners' : '') + '" ' + style_color + '>';
         result += card_element_icon(data, options);
         result += card_element_title(data, options);
         result += card_generate_contents(data.contents, data, options);
         result += '</div>';
     }
-    else if(card_style = "1"){
+    else if(card_style == "1"){
         result += '<div class="card card-size-' + options.card_size + ' ' + (options.rounded_corners ? 'rounded-corners' : '') + '" ' + style_color + '>';
-        //result += card_element_spell_level(data, options);
-        //result += card_element_title(data, options);
-        //result += card_generate_contents(data.contents, data, options);
+        result += card_element_spell_level(data, options);
+        result += card_element_title(data, options);
+        result += card_generate_contents(data.contents, data, options);
         result += '</div>';
     }
 

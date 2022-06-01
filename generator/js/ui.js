@@ -208,6 +208,7 @@ function ui_render_selected_card() {
     if (card) {
         var front = card_generate_front(card, card_options);
         var back = card_generate_back(card, card_options);
+        console.log(front, back);
         $('#preview-container').html(front + "\n" + back);
     }
     local_store_save();
@@ -387,22 +388,6 @@ function ui_change_card_math() {
 function ui_change_card_somatic() {
 }
 
-function ui_change_card_style() {
-    //var value = $(this).val();
-    //var card = ui_selected_card();
-
-    //card.card_style = value;
-    
-    //ui_render_selected_card();
-    var style_value = $("#card-style").val();
-    var card = ui_selected_card();
-    if (card) {
-        card.card_style = style_value;
-        //$("#selected-card option:selected").text(style_value);
-        ui_render_selected_card();
-    }
-}
-
 function ui_change_card_spell_level() {
 }
 
@@ -577,7 +562,7 @@ $(document).ready(function () {
     $("#card-contents").change(ui_change_card_contents);
     $("#card-duration").change(ui_change_card_duration);
     $("#card-spell-level").change(ui_change_card_property);
-    $("#card-style").change(ui_change_card_style);
+    $("#card-style").change(ui_change_card_property);
     $("#card-range").change(ui_change_card_range);
     $("#card-ritual").change(ui_change_card_ritual);
     $("#card-tags").change(ui_change_card_tags);
