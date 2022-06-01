@@ -6,7 +6,8 @@ var card_data_example = [
         "title": "Burning Hands",
         "icon": "white-book-1",
         "icon_back": "robe",
-        "spell_level": 3,
+        "spell_level": "5",
+        "casting_time": "3",
         "contents": [
             "subtitle | 1st level evocation",
             "rule",

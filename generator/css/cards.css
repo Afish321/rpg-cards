@@ -15,9 +15,22 @@
 
 .card-content-container {
     padding:2mm;
-    padding-top:1mm;
+    padding-top: 1mm;
     border-radius: 2mm;
-    margin-top:0px;
+    margin-top: 19px;
+    background-color: white;
+    border-color: inherit;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    font-size: inherit;
+}
+
+.card-content-container-inline {
+    padding:2mm;
+    padding-top: 1mm;
+    border-radius: 2mm;
+    margin-top: 0px;
     background-color: white;
     border-color: inherit;
     display: flex;
@@ -58,14 +71,68 @@
     background-size: contain;
 }
 
-.card-spell-level-icon {
-    width: 12mm;
+.card-casting-time {
+    width: 15mm;
     height: 12mm;
+    margin-top: 0.5mm;
     background-repeat: no-repeat;
     background-size: contain;
     background-color: inherit;
     border-color: inherit;
+    border-radius: 2mm;
     color: white;
+
+    text-align: center;
+    font-size: 20pt;
+    font-family: Lora, 'Calisto MT', 'Bookman Old Style', Bookman, 'Goudy Old Style', Garamond, 'Hoefler Text', 'Bitstream Charter', Georgia, serif;
+    font-variant: small-caps;
+}
+
+.card-casting-time-container {
+    position: absolute;
+    right: -1mm;
+    top: -1mm;
+    border: 1mm solid;
+    background-color: inherit;
+    border-color: inherit;
+    border-radius: 2mm;
+}
+
+.card-casting-time-inline {
+    width: 12mm;
+    height: 7mm;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: inherit;
+    border-color: inherit;
+    border-radius: 2mm;
+    color: white;
+
+    text-align: center;
+    font-size: 15pt;
+    font-family: Lora, 'Calisto MT', 'Bookman Old Style', Bookman, 'Goudy Old Style', Garamond, 'Hoefler Text', 'Bitstream Charter', Georgia, serif;
+    font-variant: small-caps;
+}
+
+.card-casting-time-inline-container {
+    position: absolute;
+    right: -1mm;
+    top: -1mm;
+    border: 1mm solid;
+    background-color: inherit;
+    border-color: inherit;
+    border-radius: 2mm;
+}
+
+.card-spell-level-icon {
+    width: 15mm;
+    height: 12mm;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: inherit;
+    background-position: center;
+    border-color: inherit;
+    border-radius: 2mm;
 }
 
 .card-spell-level-icon-container {
@@ -73,19 +140,20 @@
     left: -1mm;
     top: -1mm;
     border: 1mm solid;
-    border-radius: 1mm;
     background-color: inherit;
     border-color: inherit;
+    border-radius: 2mm;
 }
 
 .card-spell-level-inlineicon {
-    width: 7mm;
+    width: 12mm;
     height: 7mm;
     background-repeat: no-repeat;
     background-size: contain;
     background-color: inherit;
+    background-position: center;
     border-color: inherit;
-    color: white;
+    border-radius: 2mm;
 }
 
 .card-spell-level-inlineicon-container {
@@ -93,9 +161,9 @@
     left: -1mm;
     top: -1mm;
     border: 1mm solid;
-    border-radius: 1mm;
     background-color: inherit;
     border-color: inherit;
+    border-radius: 2mm;
 }
 
 .card-title-icon {
@@ -137,6 +205,17 @@
 }
 
 .card-title {
+    margin-top: 2mm;
+    height: 8mm;
+    text-align: center;
+    font-family: Lora, 'Calisto MT', 'Bookman Old Style', Bookman, 'Goudy Old Style', Garamond, 'Hoefler Text', 'Bitstream Charter', Georgia, serif;
+    font-variant: small-caps;
+    font-weight: bold;
+    background-color: inherit;
+    color: white;
+}
+
+.card-title-inline {
     height: 8mm;
     text-align: center;
     font-family: Lora, 'Calisto MT', 'Bookman Old Style', Bookman, 'Goudy Old Style', Garamond, 'Hoefler Text', 'Bitstream Charter', Georgia, serif;
@@ -243,10 +322,6 @@
 
 .card-section + .card-element {
     margin-top: 0.3em;
-}
-
-.card-p {
-
 }
 
 .card-fill {flex:1;}

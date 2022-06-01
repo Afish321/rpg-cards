@@ -76,7 +76,7 @@ function card_data_icon_front(card_data, options) {
     return card_data.icon_front || card_data.icon || options.default_icon || "ace";
 }
 
-function card_data_icon_spell_level(card_data, options) {
+function card_data_icon_spell_level(card_data) {
     var level = card_data.spell_level;
     var result = "";
         if (level) {
@@ -84,6 +84,38 @@ function card_data_icon_spell_level(card_data, options) {
         }
         else {
             result = "white-book";
+        }
+    return result;
+}
+
+function card_data_icon_casting_time(card_data) {
+    var time = card_data.casting_time;
+    var result = "";
+        switch (time) {
+        case "0":
+            result += "RA";
+                break;
+        case "1":
+            result += "BA";
+                break;
+        case "2":
+            result += "1A";
+                break;
+        case "3":
+            result += "FA";
+                break;
+        case "4":
+            result += "1M";
+                break;
+        case "5":
+            result += "10M";
+                break;
+        case "6":
+            result += "1HR";
+                break;
+        default:
+            console.log ("casting_time returned null");
+            break;
         }
     return result;
 }
@@ -103,7 +135,12 @@ function card_data_split_params(value) {
 function card_element_title(card_data, options) {
     var title = card_data.title || "";
     var title_size = card_data.title_size || options.default_title_size || 'normal';
-    return '<div class="card-title card-title-' + title_size + '">' + title + '</div>';
+    var classname = "";
+    if (options.icon_inline) {
+        classname = "-inline";
+    }
+
+    return '<div class="card-title' + classname + ' card-title-' + title_size + '">' + title + '</div>';
 }
 
 function card_element_icon(card_data, options) {
@@ -122,7 +159,7 @@ function card_element_icon(card_data, options) {
 }
 
 function card_element_spell_level(card_data, options) {
-    var icon = card_data_icon_spell_level(card_data, options);
+    var icon = card_data_icon_spell_level(card_data);
     var classname = "icon";
     if (options.icon_inline) {
         classname = "inlineicon";
@@ -131,6 +168,21 @@ function card_element_spell_level(card_data, options) {
     var result = "";
     result += '<div class="card-spell-level-' + classname + '-container">';
     result += '    <div class="card-spell-level-' + classname + ' icon-' + icon + '">';
+    result += '    </div>';
+    result += '</div>';
+    return result;
+}
+
+function card_element_casting_time(card_data, options) {
+    var time = card_data_icon_casting_time(card_data);
+    var classname = "";
+    if (options.icon_inline) {
+        classname = "-inline";
+    }
+    
+    var result = "";
+    result += '<div class="card-casting-time' + classname + '-container">';
+    result += '    <div class="card-casting-time' + classname + '">' + time;
     result += '    </div>';
     result += '</div>';
     return result;
@@ -357,8 +409,14 @@ var card_element_generators = {
 // ============================================================================
 
 function card_generate_contents(contents, card_data, options) {
+    var classname = "";
+    if (options.icon_inline) {
+        classname = "-inline";
+    }
+    console.log("classname = " + classname);
+
     var result = "";
-    result += '<div class="card-content-container">';
+    result += '<div class="card-content-container' + classname + '">';
     result += contents.map(function (value) {
         var parts = card_data_split_params(value);
         var element_name = parts[0];
@@ -396,19 +454,25 @@ function card_generate_front(data, options) {
     var card_style = card_data_card_style(data, options);
     var result = "";
     
-    if(card_style == "0"){
-        result += '<div class="card card-size-' + options.card_size + ' ' + (options.rounded_corners ? 'rounded-corners' : '') + '" ' + style_color + '>';
-        result += card_element_icon(data, options);
-        result += card_element_title(data, options);
-        result += card_generate_contents(data.contents, data, options);
-        result += '</div>';
-    }
-    else if(card_style == "1"){
-        result += '<div class="card card-size-' + options.card_size + ' ' + (options.rounded_corners ? 'rounded-corners' : '') + '" ' + style_color + '>';
-        result += card_element_spell_level(data, options);
-        result += card_element_title(data, options);
-        result += card_generate_contents(data.contents, data, options);
-        result += '</div>';
+    switch (card_style){
+        case "0":
+            result += '<div class="card card-size-' + options.card_size + ' ' + (options.rounded_corners ? 'rounded-corners' : '') + '" ' + style_color + '>';
+            result += card_element_icon(data, options);
+            result += card_element_title(data, options);
+            result += card_generate_contents(data.contents, data, options);
+            result += '</div>';
+            break;
+        case "1":
+            result += '<div class="card card-size-' + options.card_size + ' ' + (options.rounded_corners ? 'rounded-corners' : '') + '" ' + style_color + '>';
+            result += card_element_spell_level(data, options);
+            result += card_element_title(data, options);
+            result += card_element_casting_time(data, options);
+            result += card_generate_contents(data.contents, data, options);
+            result += '</div>';
+            break;
+        default:
+            console.log ("card_style returned empty");
+            break;
     }
 
     return result;

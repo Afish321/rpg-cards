@@ -177,6 +177,8 @@ function ui_update_selected_card() {
     var card = ui_selected_card();
     if (card) {
         $("#card-style").val(card.card_style);
+        $("#card-spell-level").val(card.spell_level);
+        $("#card-casting-time").val(card.casting_time);
         $("#card-title").val(card.title);
         $("#card-title-size").val(card.title_size);
         $("#card-count").val(card.count);
@@ -188,6 +190,8 @@ function ui_update_selected_card() {
         $("#card-color").val(card.color).change();
     } else {
         $("#card-style").val("0");
+        $("#card-spell-level").val("0");
+        $("#card-casting-time").val("2");
         $("#card-title").val("");
         $("#card-title-size").val("");
         $("#card-count").val(1);
@@ -347,9 +351,6 @@ function ui_change_default_icon() {
     var value = $(this).val();
     card_options.default_icon = value;
     ui_render_selected_card();
-}
-
-function ui_change_card_casting_time() {
 }
 
 function ui_change_card_concentration() {
@@ -556,7 +557,7 @@ $(document).ready(function () {
     $("#card-count").change(ui_change_card_property);
     $("#card-icon-back").change(ui_change_card_property);
 	$("#card-background").change(ui_change_card_property);
-    $("#card-casting-time").change(ui_change_card_casting_time);
+    $("#card-casting-time").change(ui_change_card_property);
 	$("#card-color").change(ui_change_card_color);
     $("#card-concentration").change(ui_change_card_concentration);
     $("#card-contents").change(ui_change_card_contents);
