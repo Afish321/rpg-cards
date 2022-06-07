@@ -179,6 +179,8 @@ function ui_update_selected_card() {
         $("#card-style").val(card.card_style);
         $("#card-spell-level").val(card.spell_level);
         $("#card-casting-time").val(card.casting_time);
+        $("#card-concentration").val(card.concentration);
+        $("#card-ritual").val(card.ritual);
         $("#card-title").val(card.title);
         $("#card-title-size").val(card.title_size);
         $("#card-count").val(card.count);
@@ -192,6 +194,8 @@ function ui_update_selected_card() {
         $("#card-style").val("0");
         $("#card-spell-level").val("0");
         $("#card-casting-time").val("2");
+        $("#card-concentration").val(false);
+        $("#card-ritual").val(false);
         $("#card-title").val("");
         $("#card-title-size").val("");
         $("#card-count").val(1);
@@ -354,6 +358,8 @@ function ui_change_default_icon() {
 }
 
 function ui_change_card_concentration() {
+    card.concentration = $(this).is(':checked');
+    ui_render_selected_card();
 }
 
 function ui_change_card_contents() {
@@ -396,6 +402,8 @@ function ui_change_card_range() {
 }
 
 function ui_change_card_ritual() {
+    card.ritual = $(this).is(':checked');
+    ui_render_selected_card();
 }
 
 function ui_change_card_tags() {

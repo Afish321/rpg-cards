@@ -57,7 +57,7 @@ function card_remove_tag(card, tag) {
 }
 
 // ============================================================================
-// Card definition related functions
+// Card data related functions
 // ============================================================================
 
 function card_data_card_style(card_data, options) {
@@ -413,7 +413,6 @@ function card_generate_contents(contents, card_data, options) {
     if (options.icon_inline) {
         classname = "-inline";
     }
-    console.log("classname = " + classname);
 
     var result = "";
     result += '<div class="card-content-container' + classname + '">';
@@ -428,6 +427,45 @@ function card_generate_contents(contents, card_data, options) {
             return card_element_unknown(element_params, card_data, options);
         }
     }).join("\n");
+    result += '</div>';
+    return result;
+}
+
+function card_generate_concentration_ritual (card_data) {
+    result = '<div class="card-concentration-ritual-container">';
+    result += '    <div class="card-concentration-ritual-text">CON.</div>'
+    if (card_data.concentration){
+        result += '    <div class="card-concentration-ritual-icon icon-check-mark"></div>';
+    }
+    else {
+        result += '    <div class="card-concentration-ritual-icon icon-cancel"></div>';
+    }
+    result += '    <div class="card-concentration-ritual-text">RIT.</div>'
+    if (card_data.ritual) {
+        result += '    <div class="card-concentration-ritual-icon icon-check-mark"></div>';
+    }
+    else {
+        result += '    <div class="card-concentration-ritual-icon icon-cancel"></div>';
+    }
+    result += '</div>';
+    return result;
+}
+
+function card_generate_spell_elements(card_data, options) {
+    var classname = "";
+    if (options.icon_inline) {
+        classname = "-inline";
+    }
+    
+    var result = "";
+    result += '<div class="card-spell-content-container' + classname + '">';
+    result += card_generate_concentration_ritual(card_data);
+    //result += card_generate_range(card_data.range, card_data, options);
+    //result += card_generate_duration(card_data.duration, card_data, options);
+    //result += card_element_verbal_somatic_material(card_data, options);
+    //result += card_generate_material_description(card_data.material_description, card_data, options);
+    //result += card_generate_maths(card_data.math, card_data, options);
+    result += card_generate_contents(card_data.contents, card_data, options);
     result += '</div>';
     return result;
 }
@@ -467,7 +505,7 @@ function card_generate_front(data, options) {
             result += card_element_spell_level(data, options);
             result += card_element_title(data, options);
             result += card_element_casting_time(data, options);
-            result += card_generate_contents(data.contents, data, options);
+            result += card_generate_spell_elements(data, options);
             result += '</div>';
             break;
         default:

@@ -13,11 +13,47 @@
     border-radius: 4px;
 }
 
+.card-concentration-ritual-container {
+    padding: 2mm;
+    background-color: inherit;
+    border-color: inherit;
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    font-size: inherit;
+}
+
+.card-concentration-ritual-icon {
+    width: 10mm;
+    height: 10mm;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: inherit;
+    background-position: bottom;
+    border-color: inherit;
+    border-radius: 2mm;
+    font-size: inherit;
+    color: white;
+}
+
+.card-concentration-ritual-text {
+    height: 10mm;
+    background-color: white;
+    border-color: inherit;
+    border-radius: 2mm;
+
+    text-align: center;
+    font-size: 12pt;
+    font-family: Lora, 'Calisto MT', 'Bookman Old Style', Bookman, 'Goudy Old Style', Garamond, 'Hoefler Text', 'Bitstream Charter', Georgia, serif;
+    font-variant: small-caps;
+    color: inherit;
+}
+
 .card-content-container {
     padding:2mm;
     padding-top: 1mm;
     border-radius: 2mm;
-    margin-top: 19px;
+    margin-top: 0px;
     background-color: white;
     border-color: inherit;
     display: flex;
@@ -32,6 +68,30 @@
     border-radius: 2mm;
     margin-top: 0px;
     background-color: white;
+    border-color: inherit;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    font-size: inherit;
+}
+
+.card-spell-content-container {
+    padding:0mm;
+    border-radius: 2mm;
+    margin-top: 19px;
+    background-color: inherit;
+    border-color: inherit;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    font-size: inherit;
+}
+
+.card-spell-content-container-inline {
+    padding:0mm;
+    border-radius: 2mm;
+    margin-top: 0px;
+    background-color: inherit;
     border-color: inherit;
     display: flex;
     flex-direction: column;
@@ -146,7 +206,7 @@
 }
 
 .card-spell-level-inlineicon {
-    width: 12mm;
+    width: 10mm;
     height: 7mm;
     background-repeat: no-repeat;
     background-size: contain;
