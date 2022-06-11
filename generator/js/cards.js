@@ -431,22 +431,67 @@ function card_generate_contents(contents, card_data, options) {
     return result;
 }
 
-function card_generate_concentration_ritual (card_data) {
-    result = '<div class="card-concentration-ritual-container">';
-    result += '    <div class="card-concentration-ritual-text">CON.</div>'
-    if (card_data.concentration){
-        result += '    <div class="card-concentration-ritual-icon icon-check-mark"></div>';
+function card_generate_concentration_ritual_range_duration (card_data) {
+    var range = card_data.range || "";
+    var duration = card_data.duration || "";
+    var concentration = card_data.concentration || false;
+    var ritual = card_data.ritual || false;
+
+    result = '<div class="card-concentration-ritual-range-duration-container">';
+    result += '     <div class="card-concentration-ritual-text">C';
+    if (concentration){
+        result += ' \u2714';
     }
     else {
-        result += '    <div class="card-concentration-ritual-icon icon-cancel"></div>';
+        result += ' \u2716';
     }
-    result += '    <div class="card-concentration-ritual-text">RIT.</div>'
-    if (card_data.ritual) {
-        result += '    <div class="card-concentration-ritual-icon icon-check-mark"></div>';
+    result +=       ' | ';
+    result +=       'R';
+    if (ritual) {
+        result += ' \u2714';
     }
     else {
-        result += '    <div class="card-concentration-ritual-icon icon-cancel"></div>';
+        result += ' \u2716';
     }
+    result += '     </div>';
+    result += '     <div class="card-range-text">' + range + '</div>';
+    result += '     <div class="card-duration-text">' + duration + '</div>';
+    result += '</div>';
+    return result;
+}
+
+function card_generate_vsm (card_data) {
+    var verbal = card_data.verbal || false;
+    var somatic = card_data.somatic || false;
+    var material = card_data.material || false;
+    var material_description = card_data.material_description || "";
+
+    result = '<div class="card-vsm-container">';
+    result += '     <div class="card-vsm-text">V';
+    if (verbal){
+        result += ' \u2714';
+    }
+    else {
+        result += ' \u2716';
+    }
+    result +=       ' | ';
+    result +=       'S';
+    if (somatic) {
+        result += ' \u2714';
+    }
+    else {
+        result += ' \u2716';
+    }
+    result +=       ' | ';
+    result +=       'M';
+    if (material) {
+        result += ' \u2714';
+    }
+    else {
+        result += ' \u2716';
+    }
+    result += '     </div>';
+    result += '     <div class="card-vsm-text">' + material_description + '</div>';
     result += '</div>';
     return result;
 }
@@ -459,13 +504,20 @@ function card_generate_spell_elements(card_data, options) {
     
     var result = "";
     result += '<div class="card-spell-content-container' + classname + '">';
-    result += card_generate_concentration_ritual(card_data);
-    //result += card_generate_range(card_data.range, card_data, options);
-    //result += card_generate_duration(card_data.duration, card_data, options);
-    //result += card_element_verbal_somatic_material(card_data, options);
-    //result += card_generate_material_description(card_data.material_description, card_data, options);
-    //result += card_generate_maths(card_data.math, card_data, options);
-    result += card_generate_contents(card_data.contents, card_data, options);
+    result += card_generate_concentration_ritual_range_duration(card_data);
+    result += '</div>';
+    return result;
+}
+
+function card_generate_spell_vsm(card_data, options) {
+    var classname = "";
+    if (options.icon_inline) {
+        classname = "-inline";
+    }
+    
+    var result = "";
+    result += '<div class="card-spell-content-container' + classname + '">';
+    result += card_generate_vsm(card_data);
     result += '</div>';
     return result;
 }
@@ -491,6 +543,7 @@ function card_generate_front(data, options) {
     var style_color = card_generate_color_style(color, options);
     var card_style = card_data_card_style(data, options);
     var result = "";
+    console.log('verbal', data.verbal);
     
     switch (card_style){
         case "0":
@@ -506,6 +559,8 @@ function card_generate_front(data, options) {
             result += card_element_title(data, options);
             result += card_element_casting_time(data, options);
             result += card_generate_spell_elements(data, options);
+            result += card_generate_contents(data.contents, data, options);
+            result += card_generate_spell_vsm(data, options);
             result += '</div>';
             break;
         default:

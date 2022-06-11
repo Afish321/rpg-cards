@@ -8,6 +8,12 @@ var card_data_example = [
         "icon_back": "robe",
         "spell_level": "5",
         "casting_time": "3",
+        "concentration": true,
+        "ritual": false,
+        "verbal": true,
+        "somatic": true,
+        "material": false,
+        "material_description": "",
         "contents": [
             "subtitle | 1st level evocation",
             "rule",

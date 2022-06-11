@@ -2,76 +2,153 @@
     border: 2mm solid;
     box-sizing: border-box;
     position: relative;
+
     display: flex;
     flex-direction: column;
+
     font-family: 'Noto Sans', 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
     font-size: 8pt;
     overflow: hidden;
+}
+
+.break{
+    flex-basis: 100%;
+    width: 0;
 }
 
 .card.rounded-corners {
     border-radius: 4px;
 }
 
-.card-concentration-ritual-container {
-    padding: 2mm;
+.card-concentration-ritual-range-duration-container {
+    padding: 0mm;
+    padding-top: 1mm;
+    padding-bottom: 2mm;
     background-color: inherit;
     border-color: inherit;
+
     display: flex;
-    flex-direction: row;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
     flex: 1;
-    font-size: inherit;
-}
+    gap: 2mm;
 
-.card-concentration-ritual-icon {
-    width: 10mm;
-    height: 10mm;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-color: inherit;
-    background-position: bottom;
-    border-color: inherit;
-    border-radius: 2mm;
-    font-size: inherit;
-    color: white;
-}
-
-.card-concentration-ritual-text {
-    height: 10mm;
-    background-color: white;
-    border-color: inherit;
-    border-radius: 2mm;
-
-    text-align: center;
-    font-size: 12pt;
+    font-size: 8pt;
     font-family: Lora, 'Calisto MT', 'Bookman Old Style', Bookman, 'Goudy Old Style', Garamond, 'Hoefler Text', 'Bitstream Charter', Georgia, serif;
     font-variant: small-caps;
     color: inherit;
 }
 
+.card-concentration-ritual-text {
+    height: 100%;
+    padding: 0.5mm;
+    background-color: white;
+    border-color: inherit;
+    border-radius: 2mm;
+
+    font-size: 8pt;
+    font-family: Lora, 'Calisto MT', 'Bookman Old Style', Bookman, 'Goudy Old Style', Garamond, 'Hoefler Text', 'Bitstream Charter', Georgia, serif;
+    font-variant: small-caps;
+    color: inherit;
+    text-align: center;
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    gap: 2mm;
+}
+
+.card-range-text {
+    height: 100%;
+    padding: 0.5mm;
+    background-color: white;
+    border-color: inherit;
+    border-radius: 2mm;
+
+    font-size: 8pt;
+    font-family: Lora, 'Calisto MT', 'Bookman Old Style', Bookman, 'Goudy Old Style', Garamond, 'Hoefler Text', 'Bitstream Charter', Georgia, serif;
+    font-variant: small-caps;
+    color: inherit;
+    text-align: center;
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    flex: 2;
+    gap: 2mm;
+}
+
+.card-duration-text {
+    height: 100%;
+    padding: 0.5mm;
+    background-color: white;
+    border-color: inherit;
+    border-radius: 2mm;
+
+    font-size: 8pt;
+    font-family: Lora, 'Calisto MT', 'Bookman Old Style', Bookman, 'Goudy Old Style', Garamond, 'Hoefler Text', 'Bitstream Charter', Georgia, serif;
+    font-variant: small-caps;
+    color: inherit;
+    text-align: center;
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    gap: 2mm;
+}
+
+.card-vsm-text {
+    height: 100%;
+    padding: 0.5mm;
+    background-color: white;
+    border-color: inherit;
+    border-radius: 2mm;
+
+    font-size: 8pt;
+    font-family: Lora, 'Calisto MT', 'Bookman Old Style', Bookman, 'Goudy Old Style', Garamond, 'Hoefler Text', 'Bitstream Charter', Georgia, serif;
+    font-variant: small-caps;
+    color: inherit;
+    text-align: center;
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    gap: 2mm;
+}
+
 .card-content-container {
     padding:2mm;
     padding-top: 1mm;
+    padding-bottom: 1mm;
     border-radius: 2mm;
     margin-top: 0px;
     background-color: white;
     border-color: inherit;
     display: flex;
     flex-direction: column;
-    flex: 1;
+    flex: 5;
     font-size: inherit;
 }
 
 .card-content-container-inline {
     padding:2mm;
     padding-top: 1mm;
+    padding-bottom: 1mm;
     border-radius: 2mm;
     margin-top: 0px;
     background-color: white;
     border-color: inherit;
     display: flex;
     flex-direction: column;
-    flex: 1;
+    flex: 5;
     font-size: inherit;
 }
 
@@ -84,11 +161,31 @@
     display: flex;
     flex-direction: column;
     flex: 1;
+    flex-wrap: nowrap;
     font-size: inherit;
 }
 
+.card-vsm-container {
+    padding: 0mm;
+    padding-top: 2mm;
+    background-color: inherit;
+    border-color: inherit;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+    gap: 2mm;
+
+    font-size: 8pt;
+    font-family: Lora, 'Calisto MT', 'Bookman Old Style', Bookman, 'Goudy Old Style', Garamond, 'Hoefler Text', 'Bitstream Charter', Georgia, serif;
+    font-variant: small-caps;
+    color: inherit;
+}
+
 .card-spell-content-container-inline {
-    padding:0mm;
+    padding: 0mm;
     border-radius: 2mm;
     margin-top: 0px;
     background-color: inherit;
@@ -96,11 +193,11 @@
     display: flex;
     flex-direction: column;
     flex: 1;
+    flex-wrap: nowrap;
     font-size: inherit;
 }
 
 .card-back {
-/*     background-color: white; */
     border-radius: 4mm;
     border-color: inherit;
     margin: 3mm;

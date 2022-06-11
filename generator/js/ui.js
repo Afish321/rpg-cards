@@ -181,6 +181,12 @@ function ui_update_selected_card() {
         $("#card-casting-time").val(card.casting_time);
         $("#card-concentration").val(card.concentration);
         $("#card-ritual").val(card.ritual);
+        $("#card-range").val(card.range);
+        $("#card-duration").val(card.duration);
+        $("#card-verbal").val(card.verbal);
+        $("#card-somatic").val(card.somatic);
+        $("#card-material").val(card.material);
+        $("#card-material-description").val(card.material_description);
         $("#card-title").val(card.title);
         $("#card-title-size").val(card.title_size);
         $("#card-count").val(card.count);
@@ -196,6 +202,12 @@ function ui_update_selected_card() {
         $("#card-casting-time").val("2");
         $("#card-concentration").val(false);
         $("#card-ritual").val(false);
+        $("#card-range").val("Self");
+        $("#card-duration").val("Instantaneous");
+        $("#card-verbal").val(false);
+        $("#card-somatic").val(false);
+        $("#card-material").val(false);
+        $("#card-material-description").val("");
         $("#card-title").val("");
         $("#card-title-size").val("");
         $("#card-count").val(1);
@@ -358,8 +370,11 @@ function ui_change_default_icon() {
 }
 
 function ui_change_card_concentration() {
-    card.concentration = $(this).is(':checked');
-    ui_render_selected_card();
+    var card = ui_selected_card();
+    if (card){
+        card.concentration = $(this).is(':checked');
+        ui_render_selected_card();
+    }
 }
 
 function ui_change_card_contents() {
@@ -373,6 +388,13 @@ function ui_change_card_contents() {
 }
 
 function ui_change_card_duration() {
+    var duration = $("#card-duration").val();
+    var card = ui_selected_card();
+    if (card) {
+        card.duration = duration;
+        $("#selected-card option:selected").text(duration);
+        ui_render_selected_card();
+    }
 }
 
 function ui_change_card_contents_keyup () {
@@ -384,26 +406,53 @@ function ui_change_card_contents_keyup () {
 ui_change_card_contents_keyup.timeout = null;
 
 function ui_change_card_material() {
+    var card = ui_selected_card();
+    if (card){
+        card.material = $(this).is(':checked');
+        ui_render_selected_card();
+    }
 }
 
 function ui_change_card_material_description() {
+    var material_description = $("#card-material-description").val();
+    var card = ui_selected_card();
+    if (card) {
+        card.material_description = material_description;
+        $("#selected-card option:selected").text(material_description);
+        ui_render_selected_card();
+    }
 }
 
 function ui_change_card_math() {
 }
 
 function ui_change_card_somatic() {
+    var card = ui_selected_card();
+    if (card){
+        card.somatic = $(this).is(':checked');
+        ui_render_selected_card();
+    }
 }
 
 function ui_change_card_spell_level() {
 }
 
 function ui_change_card_range() {
+    var range = $("#card-range").val();
+    var card = ui_selected_card();
+    if (card) {
+        card.range = range;
+        $("#selected-card option:selected").text(range);
+        ui_render_selected_card();
+    }
 }
 
 function ui_change_card_ritual() {
-    card.ritual = $(this).is(':checked');
-    ui_render_selected_card();
+    var card = ui_selected_card();
+    if (card){
+        card.ritual = $(this).is(':checked');
+        ui_render_selected_card();
+    }
 }
 
 function ui_change_card_tags() {
@@ -428,6 +477,11 @@ function ui_change_default_title_size() {
 }
 
 function ui_change_card_verbal() {
+    var card = ui_selected_card();
+    if (card){
+        card.verbal = $(this).is(':checked');
+        ui_render_selected_card();
+    }
 }
 
 function ui_change_default_icon_size() {
@@ -581,7 +635,6 @@ $(document).ready(function () {
     $("#card-material-description").change(ui_change_card_material_description);
     $("#card-math").change(ui_change_card_math);
     $("#card-contents").keyup(ui_change_card_contents_keyup);
-
 
     $("#page-size").change(ui_change_option);
     $("#page-rows").change(ui_change_option);
