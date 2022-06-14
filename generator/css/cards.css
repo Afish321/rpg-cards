@@ -380,6 +380,11 @@
     color: white;
 }
 
+.card-title-left {
+    text-align: left !important;
+    padding-left: 1mm;
+}
+
 .card-title-inline {
     height: 8mm;
     text-align: center;

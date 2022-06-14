@@ -133,11 +133,15 @@ function card_data_split_params(value) {
 // ============================================================================
 
 function card_element_title(card_data, options) {
+    var card_style = card_data_card_style(card_data, options);
     var title = card_data.title || "";
     var title_size = card_data.title_size || options.default_title_size || 'normal';
     var classname = "";
     if (options.icon_inline) {
         classname = "-inline";
+    }
+    if (card_style == 0){
+        classname += " card-title-left"
     }
 
     return '<div class="card-title' + classname + ' card-title-' + title_size + '">' + title + '</div>';
