@@ -93,13 +93,13 @@ function card_data_icon_casting_time(card_data) {
     var result = "";
         switch (time) {
         case "0":
-            result += "RA";
+            result += "R";
                 break;
         case "1":
             result += "BA";
                 break;
         case "2":
-            result += "1A";
+            result += "A";
                 break;
         case "3":
             result += "FA";
@@ -191,6 +191,16 @@ function card_element_casting_time(card_data, options) {
 function card_element_subtitle(params, card_data, options) {
     var subtitle = params[0] || "";
     return '<div class="card-element card-subtitle">' + subtitle + '</div>';
+}
+
+function card_element_math(params, card_data, options) {
+    var result = "";
+    result += '<div class="card-element card-math-line">';
+    result += '   <p class="card-math-name">' + params[0] + '</p>';
+    result += '<p class="card-math-name"> | </p>';
+    result += '   <p class="card-p card-math-text">' + params[1] + '</p>';
+    result += '</div>';
+    return result;
 }
 
 function card_element_inline_icon(params, card_data, options) {
@@ -401,7 +411,8 @@ var card_element_generators = {
     section: card_element_section,
     disabled: card_element_empty,
     picture: card_element_picture,
-    icon: card_element_inline_icon
+    icon: card_element_inline_icon,
+    math: card_element_math
 };
 
 // ============================================================================
@@ -438,20 +449,18 @@ function card_generate_concentration_ritual_range_duration (card_data) {
     var ritual = card_data.ritual || false;
 
     result = '<div class="card-concentration-ritual-range-duration-container">';
-    result += '     <div class="card-concentration-ritual-text">C';
+    result += '     <div class="card-concentration-ritual-text">';
     if (concentration){
-        result += ' \u2714';
+        result += 'Conc';
     }
-    else {
-        result += ' \u2716';
+    if (concentration && ritual) {
+        result += " | "
     }
-    result +=       ' | ';
-    result +=       'R';
     if (ritual) {
-        result += ' \u2714';
+        result += 'Rit';
     }
-    else {
-        result += ' \u2716';
+    if (!(concentration || ritual)){
+        result += '.';
     }
     result += '     </div>';
     result += '     <div class="card-range-text">' + range + '</div>';
@@ -467,28 +476,21 @@ function card_generate_vsm (card_data) {
     var material_description = card_data.material_description || "";
 
     result = '<div class="card-vsm-container">';
-    result += '     <div class="card-vsm-text">V';
+    result += '     <div class="card-vsm-text">';
     if (verbal){
-        result += ' \u2714';
+        result += 'V';
     }
-    else {
-        result += ' \u2716';
+    if (verbal && somatic) {
+        result += " | "
     }
-    result +=       ' | ';
-    result +=       'S';
     if (somatic) {
-        result += ' \u2714';
+        result += 'S';
     }
-    else {
-        result += ' \u2716';
+    if (somatic && material || verbal && material){
+        result += " | "
     }
-    result +=       ' | ';
-    result +=       'M';
     if (material) {
-        result += ' \u2714';
-    }
-    else {
-        result += ' \u2716';
+        result += 'M';
     }
     result += '     </div>';
     result += '     <div class="card-vsm-text">' + material_description + '</div>';
