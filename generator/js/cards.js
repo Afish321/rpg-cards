@@ -80,7 +80,12 @@ function card_data_icon_spell_level(card_data) {
     var level = card_data.spell_level;
     var result = "";
         if (level) {
+            if (level == "0"){
+                result = "white-book-cantrip";
+            }
+            else {
             result = "white-book-" + level;
+            }
         }
         else {
             result = "white-book";
